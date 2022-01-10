@@ -1,0 +1,71 @@
+Para utilizar la base de datos de firebase existen dos formas:
+    1. cURL -> Realizando peticiones con la funcion cURL
+    2. Librerías -> Instalar con composer librerías de terceros
+
+En esta ocasión utilizaremos las librerías de terceros
+
+Composer -> Gestor de paquetes de php al igual que node para js
+
+* NOTA * 
+    Por defecto composer se instala en el directorio del proyecto que vamos a utilizar, no de forma global.
+    Para descargar paquetes para diferentes proyectos deberemos de instalar el composer en directorios diferentes o
+    instalar el composer de forma global.
+
+                                * * * INSTALACIÓN COMPOSER * * * 
+
+1. Instalamos el composer en el directorio seleccionado para descargar los paquetes :
+
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    php composer-setup.php
+    php -r "unlink('composer-setup.php');"
+
+2. Tras instalarlo resultará un archivo "composer.phar". Lo moveremos a la siguiente dirección para poder
+usarlo de manera global en todos los proyectos, no solo en el actual.
+
+    sudo mv composer.phar /usr/local/bin/composer
+
+Para actualizar la version del composer instalada -> php composer.phar update
+
+Para comprobar que el composer se encuentra correctamente instalado escribimos por consola : composer
+Deberán aparecer todos los comandos que soporta el composer
+
+* * * IMPORTAR LIBRERIAS CON COMPOSER * * *
+
+Para importar librerias para nuestro proyecto debemos de ejecutar el comando require, en este caso para este 
+proyecto:
+
+    composer require ktamas77/firebase-php
+
+Una vez ejecutado el comando de arriba se instalarán las dependencias necesarias para usar firebase.
+
+                        * * * * COMANDOS DE LA LIBRERÍA INSTALADA * * * * 
+
+// Firebase API commands
+
+$firebase->set($path, $value);   // stores data in Firebase
+$value = $firebase->get($path);  // reads a value from Firebase
+$firebase->delete($path);        // deletes value from Firebase
+$firebase->update($path, $data); // updates data in Firebase
+$firebase->push($path, $data);   // push data to Firebase
+
+// Query Parameters can be optionally used on all operations, example:
+
+$value = $firebase->get($path, ['shallow' => 'true']);
+
+// Query Parameter values with quotes example
+// Documentation: https://firebase.google.com/docs/database/rest/retrieve-data#filtering-by-a-specified-child-key
+
+$value = $firebase->get($path, ['orderBy' => '"height"']);
+
+// Firebase PHP Library commands
+
+$firebase->setToken($token);     // set up Firebase token
+$firebase->setBaseURI($uri);     // set up Firebase base URI (root node)
+$firebase->setTimeOut($seconds); // set up maximum timeout / request
+
+
+
+
+
+
