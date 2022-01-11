@@ -21,17 +21,18 @@ $user = [
 
 //$firebase->set(PATH . "/users/{$user['name']}", $user);
 
-$app = $firebase->get(PATH . '/app/');
+//$app = $firebase->get(PATH . '/app/');
 
 
 $BLOG = new Blog(1,"My blog", "Daniel");
 
 
-$BLOG->createPost("titulo", "contenido", []);
+//$BLOG->createPost("titulo", "contenido", []);
+//$BLOG->createPost("titulo2", "contenido2", []);
 
-var_dump($BLOG->getPosts());
+//var_dump($BLOG->getPosts());
 
-$firebase->set(PATH . '/app/blog1', "");
+//$firebase->set(PATH . '/posts', $BLOG->getPosts());
 
 
 
