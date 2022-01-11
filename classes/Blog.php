@@ -1,7 +1,6 @@
 <?php
 
-	require_once "./Post.php";
-
+	include_once "Post.php";
 
 class Blog {
 
@@ -17,9 +16,24 @@ class Blog {
 		$this->posts = [];
 	}
 
+	public function createPost(string $title ,string $content, array $tags){
+		$post = new Post($title, $content, $tags);
+		array_push($this->posts, $post->postToArray());
+
+
+	}
+
+
+	public function getPosts(){
+		return $this->posts;
+	}
+
+
 
 
 }
+
+
 
 
 

@@ -8,7 +8,7 @@ class Post {
     private $content;
     private $tags;
 	private $datePosted;
-    private $comments;
+    //private $comments;
 
     public function __construct(string $title ,string $content, array $tags){
         $this->title = $title;
@@ -18,15 +18,20 @@ class Post {
         $this->comments = [];
     }
 
+    public function postToArray(){
+        return [
+            "title" => $this->title,
+            "content" => $this->content,
+            "tags" => $this->tags,
+            "posted" => $this->datePosted
+        ];
+    }
+
 
 
 
 }
 
-
-$post = new Post("El Barrio", "Contenido",[1,2,3]);
-
-var_dump($post);
 
 
 
