@@ -19,12 +19,14 @@ $user = [
 ];
 
 
-//$firebase->set(PATH . "/users/{$user['name']}", $user);
+//$firebase->set(PATH . "/posts", $user);
 
 //$app = $firebase->get(PATH . '/app/');
 
 
 $BLOG = new Blog(1,"My blog", "Daniel");
+$BLOG->obtainPosts();
+var_dump($BLOG->getPosts());
 
 
 //$BLOG->createPost("titulo", "contenido", []);
