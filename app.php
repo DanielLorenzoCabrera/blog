@@ -11,28 +11,25 @@ use Firebase\FirebaseLib; // Esto se encuentra en el directorio src
 
 $firebase = new FirebaseLib(URL, TOKEN);
 
-// Storing an array
-$user = [
-    "name" => "Pedro",
-    "surname" => "Lorenzo",
-    "age" => 25
+
+
+$p1 = [
+   "title" => "puta mierda",
+   "content" => "foijeruifhuhruirhuiuhivhrviu" 
 ];
 
+$p2 = [
+    "title" => "asco de vida",
+    "content" => "foijeruiferuhfifheifhuhruirhuiuhivhrviu" 
+ ];
 
-//$firebase->set(PATH . "/users/{$user['name']}", $user);
-
-//$app = $firebase->get(PATH . '/app/');
+$firebase->set(PATH . "/posts/post1",$p1);
+$firebase->set(PATH . "/posts/post2",$p2);
 
 
 $BLOG = new Blog(1,"My blog", "Daniel");
+$BLOG->showBlog();
 
-
-//$BLOG->createPost("titulo", "contenido", []);
-//$BLOG->createPost("titulo2", "contenido2", []);
-
-//var_dump($BLOG->getPosts());
-
-//$firebase->set(PATH . '/posts', $BLOG->getPosts());
 
 
 
