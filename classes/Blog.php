@@ -11,9 +11,16 @@ class Blog {
 	private $title;
 	private $author;
     private $posts;
+<<<<<<< HEAD
 	private $url = 'https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/';
 	private $token= 'nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2'; // Nuestra clave de firebase
 	private $path = '/blog'; // Ruta base
+=======
+	private $URL ;// = 'https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/';
+	private $TOKEN ;//= 'nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2'; // Nuestra clave de firebase
+	private $PATH  ;//= '/blog'; // Ruta base
+	private $firebase ;
+>>>>>>> 56370bff4e630c6e0e5756ccbe3eba1f13f66479
 
 
 	public function __construct($id = null, $title, $author){
@@ -24,10 +31,17 @@ class Blog {
 
 /*
 	public function __construct($id = null, $title, $author){
+		$this->URL = 'https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/';
+		$this->TOKEN = 'nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2';
+		$this->PATH = '/blog';
 		$this->firebase = new FirebaseLib($this->URL, $this->TOKEN);
 		$this->id = $id;
 		$this->title = $title;
 		$this->author = $author;
+<<<<<<< HEAD
+=======
+		$this->posts = [] ;
+>>>>>>> 56370bff4e630c6e0e5756ccbe3eba1f13f66479
 		
 	}
 */
@@ -57,6 +71,7 @@ class Blog {
 
 	}
 
+<<<<<<< HEAD
 
 	private function buildFeed(){
 
@@ -80,6 +95,10 @@ class Blog {
 		$firebase = new FirebaseLib('https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/','nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2');
 		$posts =  $firebase->get("/blog/posts/");
 		return json_decode($posts,true);
+=======
+	public function obtainPosts(){
+		$this->posts = $this->firebase->get(PATH . '/posts');
+>>>>>>> 56370bff4e630c6e0e5756ccbe3eba1f13f66479
 	}
 
 
