@@ -1,7 +1,6 @@
 <?php
 	require "vendor/autoload.php";
-	include_once "./Post.php";
-
+	include_once "Post.php";
 
 	use Firebase\FirebaseLib; // Esto se encuentra en el directorio src
 
@@ -10,10 +9,10 @@ class Blog {
     private $id;
 	private $title;
 	private $author;
-    //private $posts;
-	//private $url = 'https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/';
-	//private $token= 'nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2'; // Nuestra clave de firebase
-	//private $path = '/blog'; // Ruta base
+    private $posts;
+	private $url = 'https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/';
+	private $token= 'nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2'; // Nuestra clave de firebase
+	private $path = '/blog'; // Ruta base
 
 
 	public function __construct($id = null, $title, $author){
@@ -22,10 +21,22 @@ class Blog {
 		$this->author = $author;
 	}
 
-	public function createPost(string $title ,string $content, array $tags){
+	public function sharePost(string $title ,string $content, array $tags){
 		$postsQuantity = 1 + count($this->posts); // the post id is the lenght of the number of posts
 		$post = new Post( $postsQuantity , $title, $content, $tags);
-		$this->posts[$postsQuantity] = $post->toArray();
+		$this->posts[$postsQuantity] = $post;
+		
+		$firebase = new FirebaseLib($this->url,$this->token);
+		$firebase->set($this->path . "/posts/ff{$postQuantity}",
+		[
+			"id"=> $postQuantity,
+			"title" => $title,
+			"content" => $content,
+			"tags" => $tags 
+
+		]
+		);
+		echo $this->path;
 	}
 
 
@@ -60,7 +71,7 @@ class Blog {
 
 
 	private function obtainPosts(){
-		$firebase = new FirebaseLib('https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/','nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2');
+		$firebase = new FirebaseLib($this->url,$this->token);
 		$posts =  $firebase->get("/blog/posts/");
 		return json_decode($posts,true);
 	}

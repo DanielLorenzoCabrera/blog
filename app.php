@@ -1,7 +1,7 @@
 <?php
-/*
 require "vendor/autoload.php";
 include_once "classes/Blog.php";
+/*
 
 const URL = 'https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/'; // Nuestra URL
 const TOKEN = 'nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2'; // Nuestra clave de firebase
@@ -48,16 +48,22 @@ $firebase->set(PATH . "/posts/post2",$p2);
 $firebase->set(PATH . "/posts/post3",$p3);*/
 
 $BLOG = new Blog(1,"My blog", "Daniel");
-echo "posted";
 
-//if(isset($_POST["post-btn"])){
-//}else{
+if(isset($_POST["post-btn"]) && !empty($_POST["post-btn"])){
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $tags = explode(",",$_POST['tags']);
+    
+    $BLOG->showBlog();
+    $BLOG->sharePost($title,$content,$tags);
 
-    //$BLOG->showBlog();
+}else{
+    $BLOG->showBlog();
+    echo "ooo";
 
 
 
-//}
+}
 
 
 
