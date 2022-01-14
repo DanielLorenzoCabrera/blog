@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+
+}
+
+header h1{
+    text-align: center;
+}
+
+main{
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: red;
+    max-width: 1024px;
+}
+
+main div{
+    margin: 1em 0;
+}

@@ -34,7 +34,6 @@ class Blog {
 			"title" => $title,
 			"content" => $content,
 			"tags" => $tags 
-
 		]
 		);
 	}
