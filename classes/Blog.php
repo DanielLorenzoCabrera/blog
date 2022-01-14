@@ -19,6 +19,7 @@ class Blog {
 		$this->id = $id;
 		$this->title = $title;
 		$this->author = $author;
+		$this->posts = [];
 	}
 
 	public function sharePost(string $title ,string $content, array $tags){
@@ -26,17 +27,16 @@ class Blog {
 		$post = new Post( $postsQuantity , $title, $content, $tags);
 		$this->posts[$postsQuantity] = $post;
 		
-		$firebase = new FirebaseLib($this->url,$this->token);
-		$firebase->set($this->path . "/posts/ff{$postQuantity}",
+		$firebase = new FirebaseLib($this->url, $this->token);
+		$firebase->set($this->path . "/posts/{$postsQuantity}",
 		[
-			"id"=> $postQuantity,
+			"id"=> $postsQuantity,
 			"title" => $title,
 			"content" => $content,
 			"tags" => $tags 
 
 		]
 		);
-		echo $this->path;
 	}
 
 

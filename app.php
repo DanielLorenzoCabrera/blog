@@ -1,7 +1,7 @@
 <?php
 require "vendor/autoload.php";
 include_once "classes/Blog.php";
-/*
+
 
 const URL = 'https://blog-e7af7-default-rtdb.europe-west1.firebasedatabase.app/'; // Nuestra URL
 const TOKEN = 'nVVzi0IrS2XJ2btz4eKGgQjo3XQX3Ir6i9jta5k2'; // Nuestra clave de firebase
@@ -9,7 +9,7 @@ const PATH = '/blog'; // Ruta base
 
 use Firebase\FirebaseLib; // Esto se encuentra en el directorio src
 
-$firebase = new FirebaseLib(URL, TOKEN);
+/* $firebase = new FirebaseLib(URL, TOKEN);
 
 
 $p1 = [
@@ -41,32 +41,27 @@ $p3 = [
     but that’s just why he might be the perfect choice to make a big change on the show."
 ];
 
-$BLOG = new Blog(1,"My blog", "Daniel");
-
-/*$firebase->set(PATH . "/posts/post1",$p1);
-$firebase->set(PATH . "/posts/post2",$p2);
-$firebase->set(PATH . "/posts/post3",$p3);*/
 
 $BLOG = new Blog(1,"My blog", "Daniel");
+$firebase->set(PATH . "/posts/example1",$p1);
+$firebase->set(PATH . "/posts/example2",$p2);
+$firebase->set(PATH . "/posts/example3",$p3);
+ */
 
-if(isset($_POST["post-btn"]) && !empty($_POST["post-btn"])){
+$BLOG = new Blog(1,"My blog", "Daniel");
+$fieldsFilled = isset($_POST["title"]) && !empty($_POST["title"]) && isset($_POST["content"]) && !empty($_POST["content"]);
+
+if($fieldsFilled){
     $title = $_POST['title'];
     $content = $_POST['content'];
     $tags = explode(",",$_POST['tags']);
-    
-    $BLOG->showBlog();
     $BLOG->sharePost($title,$content,$tags);
+    $BLOG->showBlog();
 
 }else{
     $BLOG->showBlog();
-    echo "ooo";
-
-
 
 }
-
-
-
 
 
 
