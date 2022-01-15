@@ -14,21 +14,16 @@ class Post {
         $this->title = $title;
         $this->content = $content;
         $this->tags = $tags;
-        $this->datePosted = date("d/m/y H:i");
+        $this->datePosted = date("d/m/y - H:i");
         $this->comments = [];
-    }
-
-    public function toArray(){
-        return [
-            "title" => $this->title,
-            "content" => $this->content,
-            "tags" => $this->tags,
-            "posted" => $this->datePosted
-        ];
     }
 
     public function getId(){
         return $this->id;
+    }
+
+    public function getDatePosted(){
+        return $this->datePosted;
     }
 
 

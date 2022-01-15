@@ -23,7 +23,7 @@ class Blog {
 	}
 
 	public function sharePost(string $title ,string $content, array $tags){
-		$postsQuantity = 1 + count($this->posts); // the post id is the lenght of the number of posts
+		$postsQuantity = count($this->obtainPosts()); // the post id is the lenght of the number of posts
 		$post = new Post( $postsQuantity , $title, $content, $tags);
 		$this->posts[$postsQuantity] = $post;
 		
@@ -33,7 +33,8 @@ class Blog {
 			"id"=> $postsQuantity,
 			"title" => $title,
 			"content" => $content,
-			"tags" => $tags 
+			"tags" => $tags,
+			"date-posted" => $post->getDatePosted()
 		]
 		);
 	}
@@ -58,12 +59,22 @@ class Blog {
 
 	private function buildFeed(){
 		echo "<main>";
-		$posts = $this->obtainPosts();		
+		$posts = array_reverse($this->obtainPosts(),true);		
 		foreach($posts as $key => $post){
-			echo "<div class='post'>";
+			echo "<article class='post'>";
 			echo "<p class='title'>${post['title']}</p>";
 			echo "<p class='content'>${post['content']}</p>";
-			echo "</div>";
+			echo "<section class='info'>";
+			echo "<section class='tags'>";
+			foreach($post['tags'] as $tag){
+				if(!empty($tag)){
+					echo "<p>#{$tag}</p>";
+				}
+			}
+			echo "</section>";
+			echo "<p class='date'>${post['date-posted']}</p>";
+			echo "</section>";
+			echo "</article>";
 		}
 		echo "</main>";
 	}
@@ -72,7 +83,9 @@ class Blog {
 	private function obtainPosts(){
 		$firebase = new FirebaseLib($this->url,$this->token);
 		$posts =  $firebase->get("/blog/posts/");
-		return json_decode($posts,true);
+		$arrayPosts = json_decode($posts,true);
+		$this->posts = $arrayPosts;
+		return $arrayPosts;
 	}
 
 

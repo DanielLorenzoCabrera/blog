@@ -11,19 +11,23 @@
     
     <?php  include_once "app.php"; ?>
     <form action="<?= $_SERVER['PHP_SELF']?>" method="post">
-        <p>
-            <label for="">Title</label>
-            <input type="text" name="title">
-        </p>
-        <p>
-            <label for="">Content</label>
-            <textarea name="content" cols="50" rows="20" ></textarea>
-        </p>
-        <p>
-            <label for="">tags</label>
-            <textarea name="tags" cols="50" rows="20" placeholder="Introduce tags divided by comas" ></textarea>
-        </p>
-        <input type="submit" name="post-btn" value="post">
+    <fieldset>
+            <label>Title
+                <input type="text" name="title">
+            </label>
+    </fieldset>
+    <fieldset>
+
+            <label for="">Content
+                <textarea name="content" cols="50" rows="20" ></textarea>
+            </label>
+        
+ 
+            <label> Tags
+                <textarea name="tags" cols="50" rows="20" placeholder="Introduce tags divided by comas" ></textarea>
+            </label>
+    </fieldset>
+    <input type="submit" name="post-btn" value="post">
     </form>
 </body>
 </html>

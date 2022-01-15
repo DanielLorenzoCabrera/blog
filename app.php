@@ -55,7 +55,7 @@ if($fieldsFilled){
     $title = $_POST['title'];
     $content = $_POST['content'];
     $tags = explode(",",$_POST['tags']);
-    $BLOG->sharePost($title,$content,$tags);
+    $BLOG->sharePost($title, $content, $tags);
     $BLOG->showBlog();
 
 }else{
