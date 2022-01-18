@@ -1,6 +1,7 @@
 <?php
+
 	require "vendor/autoload.php";
-	include_once "Post.php";
+	require_once "Post.php";
 
 	use Firebase\FirebaseLib; // Esto se encuentra en el directorio src
 
@@ -50,10 +51,7 @@ class Blog {
 	}
 
 	private function buildHeader(){
-		echo "<header>";
-		echo "<h1>{$this->title}</h1>";
-		echo "</header>";
-
+		echo "<header><h1>{$this->title}</h1></header>";
 	}
 
 

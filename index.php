@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    
     <?php  include_once "app.php"; ?>
     <form action="<?= $_SERVER['PHP_SELF']?>" method="post">
     <fieldset>
@@ -17,12 +16,9 @@
             </label>
     </fieldset>
     <fieldset>
-
             <label for="">Content
                 <textarea name="content" cols="50" rows="20" ></textarea>
             </label>
-        
- 
             <label> Tags
                 <textarea name="tags" cols="50" rows="20" placeholder="Introduce tags divided by comas" ></textarea>
             </label>
